@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "A simple library for creating more eye-pleasing email notifications in OpenAir User Scripting.",
   "main": "LibOpenAirBootstrap.js",
-  "directories": {
-    "test": "tests"
+  "homepage": "https://rymo.io/",
+  "repository": "23maverick23/lib-openair-bootstrap",
+  "author": "Ryan Morrissey <me@rymo.io>",
+  "license": "MIT",
+  "dependencies": {
+    "grunt-cli": "~1.2.0"
   },
-  "dependencies": {},
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-imagemin": "^1.0.0",
@@ -15,11 +18,7 @@
     "jshint-stylish": "^2.1.0"
   },
   "scripts": {
-    "test": "test.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/%3A23maverick23/lib-openair-bootstrap.git"
+    "test": "grunt test"
   },
   "keywords": [
     "openair",
@@ -27,11 +26,5 @@
     "bootstrap",
     "nsoa",
     "user scripting"
-  ],
-  "author": "Ryan Morrissey <me@rymo.io>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/%3A23maverick23/lib-openair-bootstrap/issues"
-  },
-  "homepage": "https://github.com/%3A23maverick23/lib-openair-bootstrap#readme"
+  ]
 }
