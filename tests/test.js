@@ -30,13 +30,13 @@ function runBootstrapTests(type) {
     // body = LibOA.Bootstrap.alert(datalong);
 
     // CASE 4 - Label no type
-    // body = LibOA.Bootstrap.label(data);
+    // body = LibOA.Bootstrap.label(shorttext);
 
     // CASE 5 - Label with type
-    // body = LibOA.Bootstrap.label(data, 'info');
+    // body = LibOA.Bootstrap.label(shorttext, 'info');
 
     // CASE 6 - Label exceeds limit
-    // body = LibOA.Bootstrap.label(datalong);
+    // body = LibOA.Bootstrap.label(longtext);
 
     // CASE 7 - Progress
     // body = LibOA.Bootstrap.progress(datanum);
@@ -48,7 +48,7 @@ function runBootstrapTests(type) {
     // body = LibOA.Bootstrap.well(shorttext);
 
     // CASE 10 - Well exceeds limit
-    // body = LibOA.Bootstrap.well(datalong.content);
+    // body = LibOA.Bootstrap.well(longtext);
 
     /**
      * END TEST CASES
@@ -57,7 +57,7 @@ function runBootstrapTests(type) {
     // EMAIL MESSAGE
     var message = {
         to: ['rmorrissey@netsuite.com'],
-        subject: 'OpenAirBootstrap Library Test',
+        subject: 'LibOpenAirBootstrap',
         body: body
     };
 
