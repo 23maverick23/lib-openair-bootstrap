@@ -1,6 +1,8 @@
 lib-openair-bootstrap
 =====================
 
+[![GitHub release](https://img.shields.io/github/release/23maverick23/lib-openair-bootstrap.svg)](https://github.com/23maverick23/lib-openair-bootstrap/releases) [![GitHub license](https://img.shields.io/github/license/23maverick23/lib-openair-bootstrap.svg)](https://github.com/23maverick23/lib-openair-bootstrap/blob/master/LICENSE) [![Build Status](https://img.shields.io/travis/23maverick23/lib-openair-bootstrap/master.svg)](https://travis-ci.org/23maverick23/lib-openair-bootstrap) [![devDependency Status](https://img.shields.io/david/dev/23maverick23/lib-openair-bootstrap.svg)](https://david-dm.org/23maverick23/lib-openair-bootstrap#info=devDependencies)
+
 This is a simple library for creating more eye-pleasing email notifications in OpenAir User Scripting. It uses simplified Bootstrap components which can be easily included in HTML formatted emails sent via `NSOA.meta.sendMail()`.
 
 ## Installation
