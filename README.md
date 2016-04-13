@@ -51,12 +51,6 @@ The following methods are available from within the library.
  * @param {string} type         An alert type which controls colors. Valid
  *                              types are: success, info, warning, danger.
  * @return {BootstrapResult}    A BootstrapResult object.
- *
- * The format of the data object should look like the below.
- * {
- *     "title": "My Title",
- *     "content": "My HTML body content"
- * }
  */
 var myAlert = LibOA.Bootstrap.alert(data, type);
 ```
@@ -126,7 +120,6 @@ This is returned by all methods
  * @classdesc A Bootstrap result object.
  * @param {string} content      HTML string.
  * @param {boolean} error       True for errors.
- * @this BootstrapResult
  * @property {string} this.html - The raw HTML content.
  * @property {number} this.count - The character length of the content.
  * @property {boolean} this.error - True if there was an error.

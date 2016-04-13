@@ -40,6 +40,15 @@ module.exports = function(grunt) {
                     'images/well.png': 'images/well.png'
                 }
             }
+        },
+
+        jsdoc : {
+            dist : {
+                src: ['LibOpenAirBootstrap.js', 'README.md', 'package.json'],
+                options: {
+                    destination: 'docs'
+                }
+            }
         }
     });
 
@@ -51,6 +60,9 @@ module.exports = function(grunt) {
 
     // Load the plugin that provides the "imagemin" task.
     grunt.loadNpmTasks('grunt-contrib-imagemin');
+
+    // Load the plugin that provides the "jsdoc" task.
+    grunt.loadNpmTasks('grunt-jsdoc');
 
     // Default task(s).
     grunt.registerTask('default', ['jshint', 'uglify']);

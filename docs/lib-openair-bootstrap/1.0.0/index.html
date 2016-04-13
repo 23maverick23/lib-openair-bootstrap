@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3>lib-openair-bootstrap 1.0.0</h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>lib-openair-bootstrap</h1><p><a href="https://github.com/23maverick23/lib-openair-bootstrap/releases"><img src="https://img.shields.io/github/release/23maverick23/lib-openair-bootstrap.svg" alt="GitHub release"></a> <a href="https://github.com/23maverick23/lib-openair-bootstrap/blob/master/LICENSE"><img src="https://img.shields.io/github/license/23maverick23/lib-openair-bootstrap.svg" alt="GitHub license"></a> <a href="https://travis-ci.org/23maverick23/lib-openair-bootstrap"><img src="https://img.shields.io/travis/23maverick23/lib-openair-bootstrap/master.svg" alt="Build Status"></a> <a href="https://david-dm.org/23maverick23/lib-openair-bootstrap#info=devDependencies"><img src="https://img.shields.io/david/dev/23maverick23/lib-openair-bootstrap.svg" alt="devDependency Status"></a></p>
+<p>This is a simple library for creating more eye-pleasing email notifications in OpenAir User Scripting. It uses simplified Bootstrap components which can be easily included in HTML formatted emails sent via <code>NSOA.meta.sendMail()</code>.</p>
+<h2>Installation</h2><p>Download <code>LibOpenAirBootstrap.js</code> or the minified version <code>LibOpenAirBootstrap.min.js</code> from this repository. <code>require</code> it into your user script with whatever name you like.</p>
+<h2>Usage</h2><p>Before you begin, make sure to upload and deploy the <code>LibOpenAirBootstrap</code> file as a <strong>Library</strong> in OpenAir. There are no dependencies to this library when installing.</p>
+<p>Next, import the library into your script using the <code>require</code> syntax. It's likely best to do this early in your script to prevent import errors.</p>
+<p>Once the library is loaded, you can call any of the available methods, passing the required arguments, and return a <code>BootstrapResult</code> object.</p>
+<pre class="prettyprint source lang-javascript"><code>var LibOA = require('LibOpenAirBootstrap');
+
+var data = {
+    title: 'Alert title!',
+    content: 'Alert body text.'
+};
+
+var body = LibOA.Bootstrap.alert(data, 'warning').html;
+
+var message = {
+    to: ['youremail@address.com'],
+    subject: 'LibOpenAirBootstrap',
+    body: body
+};
+
+var email = LibOA.BootstrapMail.mail(message);</code></pre><h2>Documentation</h2><p>The following methods are available from within the library.</p>
+<h3>Alert</h3><p><img src="https://github.com/23maverick23/lib-openair-bootstrap/raw/master/images/alert.png" alt="Bootstrap.alert"></p>
+<pre class="prettyprint source lang-javascript"><code>/**
+ * Create a Bootstrap styled alert.
+ * @param {object} data         A JSON object containing required data.
+ * @param {string} type         An alert type which controls colors. Valid
+ *                              types are: success, info, warning, danger.
+ * @return {BootstrapResult}    A BootstrapResult object.
+ */
+var myAlert = LibOA.Bootstrap.alert(data, type);</code></pre><h3>Label</h3><p><img src="https://github.com/23maverick23/lib-openair-bootstrap/raw/master/images/label.png" alt="Bootstrap.label"></p>
+<pre class="prettyprint source lang-javascript"><code>/**
+ * Create a Bootstrap styled label.
+ * @param {string} data         A string to be displayed inside the label.
+ * @param {string} type         An alert type which controls colors. Valid
+ *                              types are: default, primary, success, info,
+ *                              warning, danger.
+ * @return {BootstrapResult}    A BootstrapResult object.
+ */
+var myLabel = LibOA.Bootstrap.label(data, type);</code></pre><h3>Progress</h3><p><img src="https://github.com/23maverick23/lib-openair-bootstrap/raw/master/images/progress.png" alt="Bootstrap.progress"></p>
+<pre class="prettyprint source lang-javascript"><code>/**
+ * Create a Bootstrap styled progress meter.
+ * @param {string} data         A string to be displayed inside the badge.
+ * @return {BootstrapResult}    A BootstrapResult object.
+ */
+var myProgress = LibOA.Bootstrap.progress(data);</code></pre><h3>Badge</h3><p><img src="https://github.com/23maverick23/lib-openair-bootstrap/raw/master/images/badge.png" alt="Bootstrap.badge"></p>
+<pre class="prettyprint source lang-javascript"><code>/**
+ * Create a Bootstrap styled badge.
+ * @param {string} data         A string to be displayed inside the badge.
+ * @return {BootstrapResult}    A BootstrapResult object.
+ */
+var myBadge = LibOA.Bootstrap.badge(data);</code></pre><h3>Well</h3><p><img src="https://github.com/23maverick23/lib-openair-bootstrap/raw/master/images/well.png" alt="Bootstrap.well"></p>
+<pre class="prettyprint source lang-javascript"><code>/**
+ * Create a Bootstrap styled well.
+ * @param {string} data         A string to be displayed inside the well.
+ * @return {BootstrapResult}    A BootstrapResult object.
+ */
+var myWell = LibOA.Bootstrap.well(data);</code></pre><h3>BootstrapResult</h3><p>This is returned by all methods</p>
+<pre class="prettyprint source lang-javascript"><code>/**
+ * @class BootstrapResult
+ * @classdesc A Bootstrap result object.
+ * @param {string} content      HTML string.
+ * @param {boolean} error       True for errors.
+ * @property {string} this.html - The raw HTML content.
+ * @property {number} this.count - The character length of the content.
+ * @property {boolean} this.error - True if there was an error.
+ */
+var BootstrapResult = function(content, error) {
+    this.html  = content || '';
+    this.count = content.length;
+    this.error = error || false;
+}</code></pre><h3>Mail</h3><p>There is also an included utility function for sending mail. This method is simply a wrapper around the standard <code>NSOA.meta.sendMail()</code> method, however it ensures that the message format is set to <code>HTML</code>.</p>
+<pre class="prettyprint source lang-javascript"><code>/**
+ * A simple wrapper for sendMail method to require HTML format.
+ * @param {Object} message      An email message object.
+ * @return {?boolean}           True if message is queued for email.
+ */
+var myMail = LibOA.BootstrapMail.mail(message);</code></pre><h2>History</h2><p>12 APR 2016</p>
+<ul>
+<li>Close issue #1</li>
+<li>Close issue #2</li>
+</ul>
+<p>09 APR 2016</p>
+<ul>
+<li>Initial commit</li>
+</ul>
+<h2>Credits</h2><p>Thanks to the folks over at <a href="getbootstrap.com">Bootstrap</a> for their awesome work.</p>
+<h2>License</h2><p>This project is <a href="LICENSE">licensed</a> under the MIT license.</p></article>
+    </section>
+
+
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>LibOpenAirBootstrap.js</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description">Add simplified Bootstrap components in emails.</div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li><a href="mailto:rmorrissey@netsuite.com">Ryan Morrissey</a></li>
+        </ul>
+    </dd>
+    
+
+    
+    <dt class="tag-copyright">Copyright:</dt>
+    <dd class="tag-copyright"><ul class="dummy"><li>2016 NetSuite, Inc.</li></ul></dd>
+    
+
+    
+    <dt class="tag-license">License:</dt>
+    <dd class="tag-license"><ul class="dummy"><li>MIT</li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="LibOpenAirBootstrap.js.html">LibOpenAirBootstrap.js</a>, <a href="LibOpenAirBootstrap.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BootstrapResult.html">BootstrapResult</a></li><li><a href="ColorSwatch.html">ColorSwatch</a></li></ul><h3>Namespaces</h3><ul><li><a href="Bootstrap.html">Bootstrap</a></li><li><a href="BootstrapMail.html">BootstrapMail</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Apr 12 2016 21:17:48 GMT-0600 (MDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,7 +1,35 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: LibOpenAirBootstrap.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: LibOpenAirBootstrap.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * @file Add simplified Bootstrap components in emails.
  * @version 1.0.0
- * @author Ryan Morrissey <rmorrissey@netsuite.com>
+ * @author Ryan Morrissey &lt;rmorrissey@netsuite.com>
  * @copyright 2016 NetSuite, Inc.
  * @license MIT
  */
@@ -171,7 +199,7 @@ var Bootstrap = (function () {
          * @return {string|Object}       A copy of the original Object or string.
          */
         trimMessageBody = function (data, elem) {
-            log_source = 'Bootstrap::trimMessageBody()<br>';  // First line of log output
+            log_source = 'Bootstrap::trimMessageBody()&lt;br>';  // First line of log output
 
             try {
                 var elem_types      = {
@@ -192,7 +220,7 @@ var Bootstrap = (function () {
                     base_char_count    = 0,
                     char_overage       = 0;
 
-                if (isObject(data) && elem === 'alert') {
+                if (isObject(data) &amp;&amp; elem === 'alert') {
 
                     // Ensure correct keys if data is an object
                     if ( !('title' in data) || !('content' in data) ) { return false; }
@@ -202,7 +230,7 @@ var Bootstrap = (function () {
                     content_char_count = parseInt(data.content.length);
                     base_char_count    = parseInt(total_char_limit - html_char_count - title_char_count);
 
-                    if (base_char_count < 0) {
+                    if (base_char_count &lt; 0) {
                         char_overage = base_char_count - limit_msg.length - elipses.length;
                         data.title = data.title.slice(0, char_overage) + elipses;
                         data.content = limit_msg;
@@ -213,7 +241,7 @@ var Bootstrap = (function () {
                         // fail silently in Scheduled scripts.
                         NSOA.form.warning(log_msg);
 
-                    } else if (base_char_count - content_char_count < 0) {
+                    } else if (base_char_count - content_char_count &lt; 0) {
                         char_overage = base_char_count - content_char_count - elipses.length;  // Adjust for elipses
                         data.content = data.content.slice(0, char_overage) + elipses;
 
@@ -228,7 +256,7 @@ var Bootstrap = (function () {
                     base_char_count    = parseInt(total_char_limit - html_char_count);
                     content_char_count = parseInt(data.length);
 
-                    if (base_char_count - content_char_count < 0) {
+                    if (base_char_count - content_char_count &lt; 0) {
                         char_overage = base_char_count - html_char_count - elipses.length;  // Adjust for elipses
                         data = data.slice(0, char_overage) + elipses;
 
@@ -259,7 +287,7 @@ var Bootstrap = (function () {
          * @return {BootstrapResult}        A BootstrapResult object.
          */
         alert = function (data, type) {
-            log_source = 'Bootstrap::alert()<br>';  // First line of log output
+            log_source = 'Bootstrap::alert()&lt;br>';  // First line of log output
 
             try {
                 var clean_data   = trimMessageBody(data),
@@ -267,13 +295,13 @@ var Bootstrap = (function () {
                     html_content = null,
                     html_output  = null;
 
-                html_content = '<div style="border-radius:.25rem;color:' +
+                html_content = '&lt;div style="border-radius:.25rem;color:' +
                         styles.alert[alert_type][0] +
                     ';background:' +
                         styles.alert[alert_type][1] +
                     ';margin:20px;padding:15px;border:1px solid ' +
                         styles.alert[alert_type][2] +
-                    ';"><strong style="font-weight:bold;">{{title}} </strong>{{content}}</div>'
+                    ';">&lt;strong style="font-weight:bold;">{{title}} &lt;/strong>{{content}}&lt;/div>'
                 ;
 
                 html_output = html_content
@@ -299,7 +327,7 @@ var Bootstrap = (function () {
          * @return {BootstrapResult}    A BootstrapResult object.
          */
         label = function (data, type) {
-            log_source = 'Bootstrap::label()<br>';  // First line of log output
+            log_source = 'Bootstrap::label()&lt;br>';  // First line of log output
 
             try {
                 var clean_data   = trimMessageBody(data),
@@ -307,12 +335,12 @@ var Bootstrap = (function () {
                     html_content = null,
                     html_output  = null;
 
-                html_content = '<span style="box-sizing:border-box;display:inline;' +
+                html_content = '&lt;span style="box-sizing:border-box;display:inline;' +
                     'padding:.2em .6em .3em;font-size:75%;font-weight:700;line-height:1;' +
                     'color:#fff;text-align:center;white-space:nowrap;vertical-align:baseline;' +
                     'border-radius:.25em;background-color:' +
                         styles.label[label_type][0] +
-                    ';">{{label}}</span>'
+                    ';">{{label}}&lt;/span>'
                 ;
 
                 html_output = html_content
@@ -334,7 +362,7 @@ var Bootstrap = (function () {
          * @return {BootstrapResult}    A BootstrapResult object.
          */
         progress = function (data) {
-            log_source = 'Bootstrap::progress()<br>';  // First line of log output
+            log_source = 'Bootstrap::progress()&lt;br>';  // First line of log output
 
             try {
                 var percent      = (data.indexOf('%') === -1) ? data + '%' : data,
@@ -342,14 +370,14 @@ var Bootstrap = (function () {
                     html_content = null,
                     html_output  = null;
 
-                html_content     = '<div style="box-sizing:border-box;height:20px;' +
+                html_content     = '&lt;div style="box-sizing:border-box;height:20px;' +
                     'margin-bottom:20px;overflow:hidden;background-color:#f5f5f5;' +
                     'border-radius:4px;box-shadow:inset 0 1px 2px rgba(0,0,0,.1);">' +
-                    '<div style="min-width:2em;width:{{progress}};box-sizing:border-box;' +
+                    '&lt;div style="min-width:2em;width:{{progress}};box-sizing:border-box;' +
                     'float:left;height:100%;font-size:12px;line-height:20px;color:#fff;' +
                     'text-align:center;background-color:#337ab7;' +
                     'box-shadow:inset 0 -1px 0 rgba(0,0,0,.15);' +
-                    'transition:width .6s ease;">{{progress}}</div></div>'
+                    'transition:width .6s ease;">{{progress}}&lt;/div>&lt;/div>'
                 ;
 
                 html_output = html_content
@@ -371,17 +399,17 @@ var Bootstrap = (function () {
          * @return {BootstrapResult}    A BootstrapResult object.
          */
         badge = function (data) {
-            log_source = 'Bootstrap::badge()<br>';  // First line of log output
+            log_source = 'Bootstrap::badge()&lt;br>';  // First line of log output
 
             try {
                 var clean_data   = trimMessageBody(data),
                     html_content = null,
                     html_output  = null;
 
-                html_content = '<span style="box-sizing:border-box;display:inline-block;' +
+                html_content = '&lt;span style="box-sizing:border-box;display:inline-block;' +
                     'min-width:10px;padding:3px 7px;font-size:12px;font-weight:700;' +
                     'line-height:1;color:#fff;text-align:center;white-space:nowrap;' +
-                    'vertical-align:middle;background-color:#777;border-radius:10px;">{{badge}}</span>'
+                    'vertical-align:middle;background-color:#777;border-radius:10px;">{{badge}}&lt;/span>'
                 ;
 
                 html_output = html_content
@@ -403,16 +431,16 @@ var Bootstrap = (function () {
          * @return {BootstrapResult}    A BootstrapResult object.
          */
         well = function (data) {
-            log_source = 'Bootstrap::well()<br>';  // First line of log output
+            log_source = 'Bootstrap::well()&lt;br>';  // First line of log output
 
             try {
                 var clean_data   = trimMessageBody(data),
                     html_content = null,
                     html_output  = null;
 
-                html_content = '<div style="box-sizing:border-box;min-height:20px;padding:19px;' +
+                html_content = '&lt;div style="box-sizing:border-box;min-height:20px;padding:19px;' +
                     'margin-bottom:20px;background-color:#f5f5f5;border:1px solid #e3e3e3;' +
-                    'border-radius:4px;box-shadow:inset 0 1px 1px rgba(0,0,0,.05);">{{well}}</div>'
+                    'border-radius:4px;box-shadow:inset 0 1px 1px rgba(0,0,0,.05);">{{well}}&lt;/div>'
                 ;
 
                 html_output = html_content
@@ -454,11 +482,11 @@ var BootstrapMail = (function () {
      * @return {?boolean}           True if mail was queued to send.
      */
     var mail = function (message) {
-        var log_source = 'BootstrapMail::mail()<br>',  // First line of log output
+        var log_source = 'BootstrapMail::mail()&lt;br>',  // First line of log output
             m          = null;
 
         try {
-            if (!message || message.length < 1) {
+            if (!message || message.length &lt; 1) {
                 NSOA.meta.log('error', log_source + 'Mail method has 1 required argument "message"!');
                 return;
             }
@@ -477,4 +505,26 @@ var BootstrapMail = (function () {
 })();
 
 exports.Bootstrap = Bootstrap;
-exports.BootstrapMail = BootstrapMail;
+exports.BootstrapMail = BootstrapMail;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BootstrapResult.html">BootstrapResult</a></li><li><a href="ColorSwatch.html">ColorSwatch</a></li></ul><h3>Namespaces</h3><ul><li><a href="Bootstrap.html">Bootstrap</a></li><li><a href="BootstrapMail.html">BootstrapMail</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Apr 12 2016 21:17:48 GMT-0600 (MDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
