@@ -49,6 +49,13 @@ module.exports = function(grunt) {
                     destination: 'docs'
                 }
             }
+        },
+
+        jsdoc2md: {
+            oneOutputFile: {
+                src: ['LibOpenAirBootstrap.js', 'README.md', 'package.json'],
+                dest: 'docs/README.md'
+            }
         }
     });
 
@@ -64,9 +71,12 @@ module.exports = function(grunt) {
     // Load the plugin that provides the "jsdoc" task.
     grunt.loadNpmTasks('grunt-jsdoc');
 
+    // Load the plugin that provides the "jsdoc2md" task.
+    grunt.loadNpmTasks('grunt-jsdoc-to-markdown');
+
     // Default task(s).
     grunt.registerTask('default', ['jshint', 'uglify']);
-    grunt.registerTask('build', ['jshint', 'uglify', 'imagemin']);
+    grunt.registerTask('build', ['jshint', 'uglify', 'imagemin', 'jsdoc', 'jsdoc2md']);
     grunt.registerTask('travis', ['jshint']);
 
 };
