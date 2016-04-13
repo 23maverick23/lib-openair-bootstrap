@@ -3,7 +3,7 @@ module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        
+
         uglify: {
             options: {
                 banner: '/*! <%= pkg.main %> (v<%= pkg.version %>) <%= pkg.copyright %> (license: <%= pkg.license %>) <%= grunt.template.today("dd-mmm-yyyy") %> */\n'
@@ -13,7 +13,7 @@ module.exports = function(grunt) {
                 dest: 'LibOpenAirBootstrap.min.js'
             }
         },
-        
+
         jshint: {
             all: ['Gruntfile.js', 'LibOpenAirBootstrap.js', 'tests/test.js'],
             options: {
@@ -75,8 +75,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-jsdoc-to-markdown');
 
     // Default task(s).
+    grunt.registerTask('travis', ['jshint']);
     grunt.registerTask('default', ['jshint', 'uglify']);
     grunt.registerTask('build', ['jshint', 'uglify', 'imagemin', 'jsdoc', 'jsdoc2md']);
-    grunt.registerTask('travis', ['jshint']);
 
 };
