@@ -6,7 +6,7 @@ module.exports = function(grunt) {
         
         uglify: {
             options: {
-                banner: '/*! <%= pkg.name %> (v<%= pkg.version %>) - Copyright NetSuite, Inc. 2016. Last updated: <%= grunt.template.today("dd-mmm-yyyy") %> */\n'
+                banner: '/*! <%= pkg.main %> (v<%= pkg.version %>) <%= pkg.copyright %> (license: <%= pkg.license %>) <%= grunt.template.today("dd-mmm-yyyy") %> */\n'
             },
             build: {
                 src: 'LibOpenAirBootstrap.js',

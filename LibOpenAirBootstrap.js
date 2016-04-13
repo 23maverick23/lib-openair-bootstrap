@@ -1,17 +1,12 @@
 /**
- * Copyright NetSuite, Inc. 2016 All rights reserved.
- * The following code is a demo prototype. Due to time constraints of a demo,
- * the code may contain bugs, may not accurately reflect user requirements
- * and may not be the best approach. Actual implementation should not reuse
- * this code without due verification.
- *
- * Use simplified Bootstrap components in emails via NSOA.meta.sendMail().
- *
- * Version    Date            Author           Remarks
- * 1.0.0      09 Apr 2016     Ryan Morrissey
- *
+ * @file Add simplified Bootstrap components in emails.
+ * @version 1.0.0
+ * @author Ryan Morrissey <rmorrissey@netsuite.com>
+ * @copyright 2016 NetSuite, Inc.
+ * @license MIT
  */
 
+/** namespace */
 var Bootstrap = (function () {
     // ************************************************************************ //
     // MODULE METATAGS
@@ -42,8 +37,8 @@ var Bootstrap = (function () {
 
         /**
          * A Bootstrap result object.
-         * @param {string} content      HTML string
-         * @param {boolean} error       True for errors
+         * @param {string} content      HTML string.
+         * @param {boolean} error       True for errors.
          */
         BootstrapResult = function(content, error) {
             this.html  = content || '';
@@ -53,9 +48,9 @@ var Bootstrap = (function () {
 
         /**
          * Creates an alert color swatch object.
-         * @param {string} color        Text hexcolor
-         * @param {string} background   Background hexcolor
-         * @param {string} border       Border hexcolor
+         * @param {string} color        Text hexcolor.
+         * @param {string} background   Background hexcolor.
+         * @param {string} border       Border hexcolor.
          */
         ColorSwatch = function (color, background, border) {
             this.color      = color;
@@ -82,8 +77,8 @@ var Bootstrap = (function () {
 
         /**
          * Test if value is an object or not, ignoring arrays too.
-         * @param  {any}  val    Any type to check as object.
-         * @return {boolean}     Returns true if is an object.
+         * @param {Array|Object}  val   Any type to check as Object.
+         * @return {boolean}            Returns true if is an Object.
          */
         isObject = function (val) {
             if (val === null) { return false;}
@@ -93,8 +88,8 @@ var Bootstrap = (function () {
 
         /**
          * Trims message body to ensure content is under max limit.
-         * @param  {any} data    An object or string of message data.
-         * @return {any}         A copy of the original object or string.
+         * @param {string|Object} data   An Object or string of message data.
+         * @return {string|Object}       A copy of the original Object or string.
          */
         trimMessageBody = function (data, elem) {
             log_source = 'Bootstrap::trimMessageBody()<br>';  // First line of log output
@@ -179,11 +174,13 @@ var Bootstrap = (function () {
 
         /**
          * Create a Bootstrap styled alert.
-         * @param  {object} data    A JSON object containing required data
-         * @param  {string} type    An alert type which controls colors. Valid
-         *                          types are: success, info, warning, danger.
-         * @return {string}         Formatted HTML string.
-         *
+         * @param {Object} data             An Object containing required data.
+         * @param {string} data.title       Alert title.
+         * @param {string} data.content     Alert body content.
+         * @param {string} type             An alert type which controls colors. Valid
+         *                                  types are: success, info, warning, danger.
+         * @return {BootstrapResult}        A BootstrapResult object.
+         * 
          * The format of the data object should look like the below.
          * {
          *     "title": "My Title",
@@ -222,11 +219,11 @@ var Bootstrap = (function () {
 
         /**
          * Create a Bootstrap styled label.
-         * @param  {string} data    A string to be displayed inside the label
-         * @param  {string} type    An alert type which controls colors. Valid
-         *                          types are: default, primary, success, info,
-         *                                     warning, danger.
-         * @return {string}         Formatted HTML string.
+         * @param {string} data         A string to be displayed inside the label
+         * @param {string} type         An alert type which controls colors. Valid
+         *                              types are: default, primary, success, info,
+         *                              warning, danger.
+         * @return {BootstrapResult}    A BootstrapResult object.
          */
         label = function (data, type) {
             log_source = 'Bootstrap::label()<br>';  // First line of log output
@@ -258,8 +255,8 @@ var Bootstrap = (function () {
 
         /**
          * Create a Bootstrap styled progress meter.
-         * @param  {string} data    A string to be displayed inside the badge
-         * @return {string}         Formatted HTML string.
+         * @param {string} data         A string to be displayed inside the badge.
+         * @return {BootstrapResult}    A BootstrapResult object.
          */
         progress = function (data) {
             log_source = 'Bootstrap::progress()<br>';  // First line of log output
@@ -293,8 +290,8 @@ var Bootstrap = (function () {
 
         /**
          * Create a Bootstrap styled badge.
-         * @param  {string} data    A string to be displayed inside the badge
-         * @return {string}         Formatted HTML string.
+         * @param {string} data         A string to be displayed inside the badge.
+         * @return {BootstrapResult}    A BootstrapResult object.
          */
         badge = function (data) {
             log_source = 'Bootstrap::badge()<br>';  // First line of log output
@@ -323,8 +320,8 @@ var Bootstrap = (function () {
 
         /**
          * Create a Bootstrap styled well.
-         * @param  {string} data    A string to be displayed inside the well
-         * @return {string}         Formatted HTML string.
+         * @param {string} data         A string to be displayed inside the well.
+         * @return {BootstrapResult}    A BootstrapResult object.
          */
         well = function (data) {
             log_source = 'Bootstrap::well()<br>';  // First line of log output
@@ -365,12 +362,16 @@ var Bootstrap = (function () {
 })();
 
 
-/**
- * Simple wrapper for sendMail method to require HTML format.
- */
+/** namespace */
 var BootstrapMail = (function () {
+    /**
+     * Simple wrapper for sendMail method to require HTML format.
+     * @param {Object} message      A message object.
+     * @return {?boolean}           True if mail was queued to send.
+     */
     var mail = function (message) {
-        log_source = 'BootstrapMail::mail()<br>';  // First line of log output
+        var log_source = 'BootstrapMail::mail()<br>',  // First line of log output
+            m          = null;
 
         try {
             if (!message || message.length < 1) {
@@ -378,10 +379,11 @@ var BootstrapMail = (function () {
                 return;
             }
             message.format = 'HTML';  // Require HTML
-            var m = NSOA.meta.sendMail(message);
-            return m;
+            m = NSOA.meta.sendMail(message);
         } catch(e) {
             NSOA.meta.log('error', log_source + 'Unexpected error -> ' + e.message);
+        } finally {
+            return m;
         }
     };
 

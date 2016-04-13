@@ -5,8 +5,9 @@
   "main": "LibOpenAirBootstrap.js",
   "homepage": "https://rymo.io/",
   "repository": "23maverick23/lib-openair-bootstrap",
-  "author": "Ryan Morrissey <me@rymo.io>",
+  "author": "Ryan Morrissey <rmorrissey@netsuite.com>",
   "license": "MIT",
+  "copyright": "Copyright 2016 NetSuite, Inc.",
   "dependencies": {
     "grunt-cli": "~1.2.0"
   },

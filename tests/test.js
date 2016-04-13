@@ -21,34 +21,34 @@ function runBootstrapTests(type) {
      */
     
     // CASE 1 - Alert no type
-    body = LibOA.Bootstrap.alert(data);
+    body = LibOA.Bootstrap.alert(data).html;
 
     // CASE 2 - Alert with type
-    // body = LibOA.Bootstrap.alert(data, 'warning');
+    // body = LibOA.Bootstrap.alert(data, 'warning').html;
 
     // CASE 3 - Alert exceeds limit
-    // body = LibOA.Bootstrap.alert(datalong);
+    // body = LibOA.Bootstrap.alert(datalong).html;
 
     // CASE 4 - Label no type
-    // body = LibOA.Bootstrap.label(shorttext);
+    // body = LibOA.Bootstrap.label(shorttext).html;
 
     // CASE 5 - Label with type
-    // body = LibOA.Bootstrap.label(shorttext, 'info');
+    // body = LibOA.Bootstrap.label(shorttext, 'info').html;
 
     // CASE 6 - Label exceeds limit
-    // body = LibOA.Bootstrap.label(longtext);
+    // body = LibOA.Bootstrap.label(longtext).html;
 
     // CASE 7 - Progress
-    // body = LibOA.Bootstrap.progress(datanum);
+    // body = LibOA.Bootstrap.progress(datanum).html;
 
     // CASE 8 - Badge
-    // body = LibOA.Bootstrap.badge(datanum);
+    // body = LibOA.Bootstrap.badge(datanum).html;
 
     // CASE 9 - Well
-    // body = LibOA.Bootstrap.well(shorttext);
+    // body = LibOA.Bootstrap.well(shorttext).html;
 
     // CASE 10 - Well exceeds limit
-    // body = LibOA.Bootstrap.well(longtext);
+    // body = LibOA.Bootstrap.well(longtext).html;
 
     /**
      * END TEST CASES
