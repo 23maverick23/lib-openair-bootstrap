@@ -20,31 +20,31 @@ var Bootstrap = (function () {
          * @default
          */
         AUTHOR  = 'Ryan Morrissey',
-        
+
         /**
          * 30,000 character limit as of 16.1.
          * @constant
          * @type {number}
          * @default
          */
-        total_char_limit    = 30000,
-        
+        total_char_limit = 30000,
+
         /**
          * HTML and CSS characters total 167.
          * @constant
          * @type {number}
          * @default
          */
-        alert_char_count    = 167,
-        
+        alert_char_count = 167,
+
         /**
          * HTML and CSS characters total 243.
          * @constant
          * @type {number}
          * @default
          */
-        label_char_count    = 243,
-        
+        label_char_count = 243,
+
         /**
          * HTML and CSS characters total 416.
          * @constant
@@ -52,22 +52,22 @@ var Bootstrap = (function () {
          * @default
          */
         progress_char_count = 416,
-        
+
         /**
          * HTML and CSS characters total 252.
          * @constant
          * @type {number}
          * @default
          */
-        badge_char_count    = 252,
-        
+        badge_char_count = 252,
+
         /**
          * HTML and CSS characters total 201.
          * @constant
          * @type {number}
          * @default
          */
-        well_char_count     = 201,
+        well_char_count = 201,
 
         /**
          * An elipses.
@@ -75,31 +75,53 @@ var Bootstrap = (function () {
          * @type {string}
          * @default
          */
-        elipses             = '...',
-        
+        elipses = '...',
+
         /**
          * Displayed if limit is exceeded.
          * @constant
          * @type {string}
          * @default
          */
-        limit_msg           = '[Limit]',
-        
+        limit_msg = '[Limit]',
+
         /**
          * Unexpected error log text.
          * @constant
          * @type {string}
          * @default
          */
-        error_msg           = 'Unexpected error. Please contact an administrator.',
-        
+        error_msg = 'Unexpected error. Please contact an administrator.',
+
         /**
          * Source method of the log entry for debugging.
          * @constant
          * @type {string}
          * @default
          */
-        log_source          = null,
+        log_source = null,
+
+        /**
+         * An object for storing color information.
+         * @constant
+         * @type {Object}
+         */
+        styles = {
+            alert: {
+                success: ["#3c763d", "#dff0d8", "#d0e9c6"],  // Green: color, bg, border
+                info:    ["#31708f", "#d9edf7", "#bcdff1"],  // Blue
+                warning: ["#8a6d3b", "#fcf8e3", "#faf2cc"],  // Orange
+                danger:  ["#a94442", "#f2dede", "#ebcccc"]   // Red
+            },
+            label: {
+                default: ["#777777"],  // Gray
+                primary: ["#337ab7"],  // Dark Blue
+                success: ["#5cb85c"],  // Green
+                info:    ["#5bc0de"],  // Light Blue
+                warning: ["#f0ad4e"],  // Orange
+                danger:  ["#d9534f"]   // Red
+            }
+        },
 
         /**
          * @class BootstrapResult
@@ -116,40 +138,6 @@ var Bootstrap = (function () {
             this.html  = content || '';
             this.count = content.length;
             this.error = error || false;
-        },
-
-        /**
-         * @class ColorSwatch
-         * @classdesc An object for storing colors.
-         * @this ColorSwatch
-         * @private
-         * @param {Array} colors    An array of hex colors.
-         * @property {Array} colors - An array of hex colors.
-         */
-        ColorSwatch = function (colors) {
-            this.colors = colors || [];
-        },
-
-        /**
-         * An object for storing color information.
-         * @constant
-         * @type {Object}
-         */
-        styles = {
-            alert: {
-                success: new ColorSwatch(["#3c763d", "#dff0d8", "#d0e9c6"]),  // Green: color, bg, border
-                info:    new ColorSwatch(["#31708f", "#d9edf7", "#bcdff1"]),  // Blue
-                warning: new ColorSwatch(["#8a6d3b", "#fcf8e3", "#faf2cc"]),  // Orange
-                danger:  new ColorSwatch(["#a94442", "#f2dede", "#ebcccc"])   // Red
-            },
-            label: {
-                default: new ColorSwatch(["#777777"]),  // Gray
-                primary: new ColorSwatch(["#337ab7"]),  // Dark Blue
-                success: new ColorSwatch(["#5cb85c"]),  // Green
-                info:    new ColorSwatch(["#5bc0de"]),  // Light Blue
-                warning: new ColorSwatch(["#f0ad4e"]),  // Orange
-                danger:  new ColorSwatch(["#d9534f"])   // Red
-            }
         },
 
         /**
