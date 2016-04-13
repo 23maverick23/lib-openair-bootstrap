@@ -34,6 +34,10 @@ module.exports = function(grunt) {
                 },
                 files: {
                     'images/alert.png': 'images/alert.png',  // 'destination': 'source'
+                    'images/label.png': 'images/label.png',
+                    'images/progress.png': 'images/progress.png',
+                    'images/badge.png': 'images/badge.png',
+                    'images/well.png': 'images/well.png'
                 }
             }
         }

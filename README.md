@@ -15,7 +15,7 @@ Before you begin, make sure to upload and deploy the `LibOpenAirBootstrap` file 
 
 Next, import the library into your script using the `require` syntax. It's likely best to do this early in your script to prevent import errors.
 
-Once the library is loaded, you can call any of the available methods, passing the required arguments, and return a formatted HTML string. This string can be input directly into the body of an HTML email.
+Once the library is loaded, you can call any of the available methods, passing the required arguments, and return a `BootstrapResult` object.
 
 ```javascript
 var LibOA = require('LibOpenAirBootstrap');
@@ -25,7 +25,7 @@ var data = {
     content: 'Alert body text.'
 };
 
-var body = LibOA.Bootstrap.alert(data, 'warning');
+var body = LibOA.Bootstrap.alert(data, 'warning').html;
 
 var message = {
     to: ['youremail@address.com'],
@@ -41,15 +41,16 @@ var email = LibOA.BootstrapMail.mail(message);
 The following methods are available from within the library.
 
 ### Alert
+
 ![Bootstrap.alert](https://github.com/23maverick23/lib-openair-bootstrap/raw/master/images/alert.png)
 
 ```javascript
 /**
  * Create a Bootstrap styled alert.
- * @param  {object} data    A JSON object containing required data
- * @param  {string} type    An alert type which controls colors. Valid
- *                          types are: success, info, warning, danger.
- * @return {string}         Formatted HTML string.
+ * @param {object} data         A JSON object containing required data.
+ * @param {string} type         An alert type which controls colors. Valid
+ *                              types are: success, info, warning, danger.
+ * @return {BootstrapResult}    A BootstrapResult object.
  *
  * The format of the data object should look like the below.
  * {
@@ -62,49 +63,79 @@ var myAlert = LibOA.Bootstrap.alert(data, type);
 
 ### Label
 
+![Bootstrap.label](https://github.com/23maverick23/lib-openair-bootstrap/raw/master/images/label.png)
+
 ```javascript
 /**
  * Create a Bootstrap styled label.
- * @param  {string} data    A string to be displayed inside the label
- * @param  {string} type    An alert type which controls colors. Valid
- *                          types are: default, primary, success, info,
- *                                     warning, danger.
- * @return {string}         Formatted HTML string.
+ * @param {string} data         A string to be displayed inside the label.
+ * @param {string} type         An alert type which controls colors. Valid
+ *                              types are: default, primary, success, info,
+ *                              warning, danger.
+ * @return {BootstrapResult}    A BootstrapResult object.
  */
 var myLabel = LibOA.Bootstrap.label(data, type);
 ```
 
 ### Progress
 
+![Bootstrap.progress](https://github.com/23maverick23/lib-openair-bootstrap/raw/master/images/progress.png)
+
 ```javascript
 /**
  * Create a Bootstrap styled progress meter.
- * @param  {string} data    A string to be displayed inside the badge
- * @return {string}         Formatted HTML string.
+ * @param {string} data         A string to be displayed inside the badge.
+ * @return {BootstrapResult}    A BootstrapResult object.
  */
 var myProgress = LibOA.Bootstrap.progress(data);
 ```
 
 ### Badge
 
+![Bootstrap.badge](https://github.com/23maverick23/lib-openair-bootstrap/raw/master/images/badge.png)
+
 ```javascript
 /**
  * Create a Bootstrap styled badge.
- * @param  {string} data    A string to be displayed inside the badge
- * @return {string}         Formatted HTML string.
+ * @param {string} data         A string to be displayed inside the badge.
+ * @return {BootstrapResult}    A BootstrapResult object.
  */
 var myBadge = LibOA.Bootstrap.badge(data);
 ```
 
 ### Well
 
+![Bootstrap.well](https://github.com/23maverick23/lib-openair-bootstrap/raw/master/images/well.png)
+
 ```javascript
 /**
  * Create a Bootstrap styled well.
- * @param  {string} data    A string to be displayed inside the well
- * @return {string}         Formatted HTML string.
+ * @param {string} data         A string to be displayed inside the well.
+ * @return {BootstrapResult}    A BootstrapResult object.
  */
 var myWell = LibOA.Bootstrap.well(data);
+```
+
+### BootstrapResult
+
+This is returned by all methods
+
+```javascript
+/**
+ * @class BootstrapResult
+ * @classdesc A Bootstrap result object.
+ * @param {string} content      HTML string.
+ * @param {boolean} error       True for errors.
+ * @this BootstrapResult
+ * @property {string} this.html - The raw HTML content.
+ * @property {number} this.count - The character length of the content.
+ * @property {boolean} this.error - True if there was an error.
+ */
+var BootstrapResult = function(content, error) {
+    this.html  = content || '';
+    this.count = content.length;
+    this.error = error || false;
+}
 ```
 
 ### Mail
@@ -113,12 +144,19 @@ There is also an included utility function for sending mail. This method is simp
 
 ```javascript
 /**
- * Simple wrapper for sendMail method to require HTML format.
+ * A simple wrapper for sendMail method to require HTML format.
+ * @param {Object} message      An email message object.
+ * @return {?boolean}           True if message is queued for email.
  */
 var myMail = LibOA.BootstrapMail.mail(message);
 ```
 
 ## History
+
+12 APR 2016
+
+- Close issue #1
+- Close issue #2
 
 09 APR 2016
 
